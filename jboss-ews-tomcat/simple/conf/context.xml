@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- The contents of this file will be loaded for each web application -->
+<Context crossContext="true"  allowLinking="true" swallowOutput="true">
+
+    <!-- Default set of monitored resources -->
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+
+    <!-- Uncomment this to disable session persistence across Tomcat restarts -->
+    <!--
+    <Manager pathname="" />
+    -->
+
+    <!-- Uncomment this to enable Comet connection tacking (provides events
+         on session expiration as well as webapp lifecycle) -->
+    <!--
+    <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" />
+    -->
+
+     <Resource name="jpetstore" auth="Container"
+               type="javax.sql.DataSource"
+               driverClassName="com.mysql.jdbc.Driver"
+               url="jdbc:mysql://172.16.167.2:3306/jpetstore"
+               username="jpetstore" password="jpetstore"
+               initialSize="2"
+               maxActive="30"
+               maxIdle="1"
+               maxWait="-1"
+               validationQuery="SELECT 1 from DUAL"
+               testOnBorrow="true"
+               poolPreparedStatements="true"
+               maxOpenPreparedStatements="10"
+               removeAbandoned="true"
+               removeAbandonedTimeout="60"
+               logAbandoned="true"
+     />
+
+</Context>
