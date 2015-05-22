@@ -267,7 +267,7 @@
                         <authentication>
                             <login-module code="org.picketbox.datasource.security.SecureIdentityLoginModule" flag="required">
                                 <module-option name="username" value="jpetstore"/>
-                                <module-option name="password" value="-ac763d311357c5d12bec0174403613a"/>
+                                <module-option name="password" value="jpetstore"/>
                                 <module-option name="managedConnectionFactoryName" value="jboss.jca:name=jpetstore,service=LocalTxCM"/>
                             </login-module>
                         </authentication>
@@ -275,8 +275,6 @@
                 </security-domains>
             </subsystem>
             <subsystem xmlns="urn:jboss:domain:threads:1.1">
-                <thread-factory name="ajp-thread" priority="1"/>
-                <thread-factory name="http-thread" priority="2"/>
                 <unbounded-queue-thread-pool name="http-thread-pool">
                     <max-threads count="300"/>
                     <keepalive-time time="60" unit="seconds"/>
@@ -542,7 +540,7 @@
                     <protocol type="FRAG2"/>
                     <protocol type="RSVP"/>
                 </stack>
-                <stack name="tcp">
+				<stack name="tcp">
                     <transport type="TCP" socket-binding="jgroups-tcp"/>
                     <protocol type="TCPPING">
                         <property name="initial_hosts">
@@ -677,7 +675,7 @@
                         <authentication>
                             <login-module code="org.picketbox.datasource.security.SecureIdentityLoginModule" flag="required">
                                 <module-option name="username" value="jpetstore"/>
-                                <module-option name="password" value="-ac763d311357c5d12bec0174403613a"/>
+                                <module-option name="password" value="jpetstore"/>
                                 <module-option name="managedConnectionFactoryName" value="jboss.jca:name=jpetstore,service=LocalTxCM"/>
                             </login-module>
                         </authentication>
@@ -685,8 +683,6 @@
                 </security-domains>
             </subsystem>
             <subsystem xmlns="urn:jboss:domain:threads:1.1">
-                <thread-factory name="ajp-thread" priority="1"/>
-                <thread-factory name="http-thread" priority="2"/>
                 <unbounded-queue-thread-pool name="http-thread-pool">
                     <max-threads count="300"/>
                     <keepalive-time time="60" unit="seconds"/>
@@ -1054,7 +1050,7 @@
                         <authentication>
                             <login-module code="org.picketbox.datasource.security.SecureIdentityLoginModule" flag="required">
                                 <module-option name="username" value="jpetstore"/>
-                                <module-option name="password" value="-ac763d311357c5d12bec0174403613a"/>
+                                <module-option name="password" value="jpetstore"/>
                                 <module-option name="managedConnectionFactoryName" value="jboss.jca:name=jpetstore,service=LocalTxCM"/>
                             </login-module>
                         </authentication>
@@ -1062,8 +1058,6 @@
                 </security-domains>
             </subsystem>
             <subsystem xmlns="urn:jboss:domain:threads:1.1">
-                <thread-factory name="ajp-thread" priority="1"/>
-                <thread-factory name="http-thread" priority="2"/>
                 <unbounded-queue-thread-pool name="http-thread-pool">
                     <max-threads count="300"/>
                     <keepalive-time time="60" unit="seconds"/>
@@ -1342,7 +1336,7 @@
                     <protocol type="FRAG2"/>
                     <protocol type="RSVP"/>
                 </stack>
-                <stack name="tcp">
+				<stack name="tcp">
                     <transport type="TCP" socket-binding="jgroups-tcp"/>
                     <protocol type="TCPPING">
                         <property name="initial_hosts">
@@ -1592,7 +1586,7 @@
                         <authentication>
                             <login-module code="org.picketbox.datasource.security.SecureIdentityLoginModule" flag="required">
                                 <module-option name="username" value="jpetstore"/>
-                                <module-option name="password" value="-ac763d311357c5d12bec0174403613a"/>
+                                <module-option name="password" value="jpetstore"/>
                                 <module-option name="managedConnectionFactoryName" value="jboss.jca:name=jpetstore,service=LocalTxCM"/>
                             </login-module>
                         </authentication>
@@ -1600,8 +1594,6 @@
                 </security-domains>
             </subsystem>
             <subsystem xmlns="urn:jboss:domain:threads:1.1">
-                <thread-factory name="ajp-thread" priority="1"/>
-                <thread-factory name="http-thread" priority="2"/>
                 <unbounded-queue-thread-pool name="http-thread-pool">
                     <max-threads count="300"/>
                     <keepalive-time time="60" unit="seconds"/>
@@ -1723,73 +1715,24 @@
         </socket-binding-group>
     </socket-binding-groups>
 
-    <deployments>
-        <deployment name="session.war" runtime-name="session.war">
-            <content sha1="14e58bd0a22bb8b93ddf13f20938ea4392a7ebc1"/>
-        </deployment>
-        <deployment name="simple.war" runtime-name="simple.war">
-            <fs-exploded path="C:/JBOSS/applications/simple.war"/>
-        </deployment>
-    </deployments>
-
     <server-groups>
         <server-group name="www" profile="ha">
             <jvm name="default">
                 <heap size="1024m" max-size="1024m"/>
-                <permgen size="256m" max-size="256m"/>
-                <jvm-options>
-                    <option value="-server"/>
-                    <option value="-Xss256k"/>
-                    <option value="-XX:+PrintGCTimeStamps"/>
-                    <option value="-XX:+PrintGCDetails"/>
-                    <option value="-XX:NumberOfGCLogFiles=2"/>
-                    <option value="-XX:+UseGCLogFileRotation"/>
-                    <option value="-XX:GCLogFileSize=3M"/>
-                    <option value="-XX:+UseParallelGC"/>
-                    <option value="-XX:+UseParallelOldGC"/>
-                    <option value="-XX:+ExplicitGCInvokesConcurrent"/>
-                    <option value="-XX:+HeapDumpOnOutOfMemoryError"/>
-                </jvm-options>
+                <permgen size="256m" max-size="256m"/> 
             </jvm>
             <socket-binding-group ref="ha-sockets"/>
-            <system-properties>
-                <property name="jboss.default.multicast.address" value="231.10.1.1"/>
-                <property name="jboss.messaging.group.address" value="231.20.1.1"/>
-                <property name="jboss.modcluster.multicast.address" value="231.30.1.1"/>
-                <property name="jboss.default.jgroups.stack" value="udp"/>
-                <property name="jgroups.tcpping.initial_hosts" value="localhost[7600],localhost[7700]"/>
-            </system-properties>
         </server-group>
+
+       
         <server-group name="support" profile="ha">
             <jvm name="default">
                 <heap size="1024m" max-size="1024m"/>
-                <permgen size="256m" max-size="256m"/>
-                <jvm-options>
-                    <option value="-server"/>
-                    <option value="-Xss256k"/>
-                    <option value="-XX:+PrintGCTimeStamps"/>
-                    <option value="-XX:+PrintGCDetails"/>
-                    <option value="-XX:NumberOfGCLogFiles=2"/>
-                    <option value="-XX:+UseGCLogFileRotation"/>
-                    <option value="-XX:+UseParallelGC"/>
-                    <option value="-XX:+UseParallelOldGC"/>
-                    <option value="-XX:+ExplicitGCInvokesConcurrent"/>
-                    <option value="-XX:+HeapDumpOnOutOfMemoryError"/>
-                </jvm-options>
+                <permgen size="256m" max-size="256m"/> 
             </jvm>
             <socket-binding-group ref="ha-sockets"/>
-            <deployments>
-                <deployment name="session.war" runtime-name="session.war"/>
-                <deployment name="simple.war" runtime-name="simple.war"/>
-            </deployments>
-            <system-properties>
-                <property name="jboss.default.multicast.address" value="232.10.1.1"/>
-                <property name="jboss.messaging.group.address" value="232.20.1.1"/>
-                <property name="jboss.modcluster.multicast.address" value="232.30.1.1"/>
-                <property name="jboss.default.jgroups.stack" value="udp"/>
-                <property name="jgroups.tcpping.initial_hosts" value="localhost[7600],localhost[7700]"/>
-            </system-properties>
-        </server-group>
+        </server-group> 
+
     </server-groups>
 
 </domain>

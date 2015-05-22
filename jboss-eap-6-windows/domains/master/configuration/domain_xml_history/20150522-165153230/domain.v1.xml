@@ -358,7 +358,7 @@
                 <logger category="org.apache.catalina.core.AprLifecycleListener">
                     <level name="DEBUG"/>
                 </logger>
-                <root-logger>
+                <root-logger> 
                     <level name="INFO"/>
                     <handlers>
                         <handler name="CONSOLE"/>
@@ -1723,35 +1723,25 @@
         </socket-binding-group>
     </socket-binding-groups>
 
-    <deployments>
-        <deployment name="session.war" runtime-name="session.war">
-            <content sha1="14e58bd0a22bb8b93ddf13f20938ea4392a7ebc1"/>
-        </deployment>
-        <deployment name="simple.war" runtime-name="simple.war">
-            <fs-exploded path="C:/JBOSS/applications/simple.war"/>
-        </deployment>
-    </deployments>
-
     <server-groups>
         <server-group name="www" profile="ha">
             <jvm name="default">
                 <heap size="1024m" max-size="1024m"/>
-                <permgen size="256m" max-size="256m"/>
-                <jvm-options>
-                    <option value="-server"/>
+                <permgen size="256m" max-size="256m"/> 
+                <jvm-options>	
+                    <option value="-server"/> 			
                     <option value="-Xss256k"/>
                     <option value="-XX:+PrintGCTimeStamps"/>
-                    <option value="-XX:+PrintGCDetails"/>
-                    <option value="-XX:NumberOfGCLogFiles=2"/>
-                    <option value="-XX:+UseGCLogFileRotation"/>
-                    <option value="-XX:GCLogFileSize=3M"/>
+                    <option value="-XX:+PrintGCDetails"/> 
+					<option value="-XX:NumberOfGCLogFiles=10"/>
+					<option value="-XX:+UseGCLogFileRotation"/>
+					<option value="-XX:GCLogFileSize=5M"/>
                     <option value="-XX:+UseParallelGC"/>
                     <option value="-XX:+UseParallelOldGC"/>
                     <option value="-XX:+ExplicitGCInvokesConcurrent"/>
-                    <option value="-XX:+HeapDumpOnOutOfMemoryError"/>
+                    <option value="-XX:+HeapDumpOnOutOfMemoryError"/> 
                 </jvm-options>
             </jvm>
-            <socket-binding-group ref="ha-sockets"/>
             <system-properties>
                 <property name="jboss.default.multicast.address" value="231.10.1.1"/>
                 <property name="jboss.messaging.group.address" value="231.20.1.1"/>
@@ -1759,37 +1749,37 @@
                 <property name="jboss.default.jgroups.stack" value="udp"/>
                 <property name="jgroups.tcpping.initial_hosts" value="localhost[7600],localhost[7700]"/>
             </system-properties>
+
+            <socket-binding-group ref="ha-sockets"/>
         </server-group>
         <server-group name="support" profile="ha">
             <jvm name="default">
                 <heap size="1024m" max-size="1024m"/>
-                <permgen size="256m" max-size="256m"/>
-                <jvm-options>
-                    <option value="-server"/>
+                <permgen size="256m" max-size="256m"/> 
+                <jvm-options>	
+                    <option value="-server"/> 			
                     <option value="-Xss256k"/>
                     <option value="-XX:+PrintGCTimeStamps"/>
-                    <option value="-XX:+PrintGCDetails"/>
-                    <option value="-XX:NumberOfGCLogFiles=2"/>
-                    <option value="-XX:+UseGCLogFileRotation"/>
+                    <option value="-XX:+PrintGCDetails"/> 
+					<option value="-XX:NumberOfGCLogFiles=10"/>
+					<option value="-XX:+UseGCLogFileRotation"/>
+					<option value="-XX:GCLogFileSize=5M"/>
                     <option value="-XX:+UseParallelGC"/>
                     <option value="-XX:+UseParallelOldGC"/>
                     <option value="-XX:+ExplicitGCInvokesConcurrent"/>
-                    <option value="-XX:+HeapDumpOnOutOfMemoryError"/>
+                    <option value="-XX:+HeapDumpOnOutOfMemoryError"/> 
                 </jvm-options>
             </jvm>
-            <socket-binding-group ref="ha-sockets"/>
-            <deployments>
-                <deployment name="session.war" runtime-name="session.war"/>
-                <deployment name="simple.war" runtime-name="simple.war"/>
-            </deployments>
-            <system-properties>
+			<system-properties>
                 <property name="jboss.default.multicast.address" value="232.10.1.1"/>
                 <property name="jboss.messaging.group.address" value="232.20.1.1"/>
                 <property name="jboss.modcluster.multicast.address" value="232.30.1.1"/>
                 <property name="jboss.default.jgroups.stack" value="udp"/>
                 <property name="jgroups.tcpping.initial_hosts" value="localhost[7600],localhost[7700]"/>
             </system-properties>
-        </server-group>
+
+            <socket-binding-group ref="ha-sockets"/>
+        </server-group> 
     </server-groups>
 
 </domain>

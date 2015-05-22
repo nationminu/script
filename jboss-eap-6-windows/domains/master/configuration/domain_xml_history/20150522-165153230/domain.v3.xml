@@ -1727,9 +1727,6 @@
         <deployment name="session.war" runtime-name="session.war">
             <content sha1="14e58bd0a22bb8b93ddf13f20938ea4392a7ebc1"/>
         </deployment>
-        <deployment name="simple.war" runtime-name="simple.war">
-            <fs-exploded path="C:/JBOSS/applications/simple.war"/>
-        </deployment>
     </deployments>
 
     <server-groups>
@@ -1780,7 +1777,6 @@
             <socket-binding-group ref="ha-sockets"/>
             <deployments>
                 <deployment name="session.war" runtime-name="session.war"/>
-                <deployment name="simple.war" runtime-name="simple.war"/>
             </deployments>
             <system-properties>
                 <property name="jboss.default.multicast.address" value="232.10.1.1"/>

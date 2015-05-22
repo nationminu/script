@@ -1,0 +1,16 @@
+DOMAIN
+---
+
+To Customize  domain directory structure 
+
+edit the bin/domain.bat.conf as follows
+
+if not "x%JAVA_OPTS%" == "x" (
+  echo "JAVA_OPTS already set in environment; overriding default settings with values: %JAVA_OPTS%"
+ 
+- add the following lines
+  set "PROCESS_CONTROLLER_JAVA_OPTS=%JAVA_OPTS%" 
+  set "HOST_CONTROLLER_JAVA_OPTS=%JAVA_OPTS%"
+
+  goto JAVA_OPTS_SET
+)

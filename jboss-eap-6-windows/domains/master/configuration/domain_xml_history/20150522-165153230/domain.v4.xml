@@ -1780,7 +1780,6 @@
             <socket-binding-group ref="ha-sockets"/>
             <deployments>
                 <deployment name="session.war" runtime-name="session.war"/>
-                <deployment name="simple.war" runtime-name="simple.war"/>
             </deployments>
             <system-properties>
                 <property name="jboss.default.multicast.address" value="232.10.1.1"/>
