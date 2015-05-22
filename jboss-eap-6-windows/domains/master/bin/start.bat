@@ -28,6 +28,9 @@ endlocal
 if EXIST "%JBOSS_LOG_DIR%\gclog\gc.log" (
   move %JBOSS_LOG_DIR%\gclog\gc.log %JBOSS_LOG_DIR%\gclog\gc.log.%datetime%
 )
+if EXIST "%DOMAIN_BASE%\%SERVER_NAME%\tmp" ( 
+  rmdir /Q /S "%DOMAIN_BASE%\%SERVER_NAME%\tmp"
+)
 
 "%JBOSS_HOME%/bin/domain.bat" -P=%DOMAIN_BASE%\%SERVER_NAME%\bin\env.properties
 
