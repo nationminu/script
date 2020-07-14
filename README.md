@@ -67,9 +67,9 @@ jboss-eap-6-windows : JBoss Enterprise Platform 6 on Windows Platform
             </jvm>
             <socket-binding-group ref="ha-sockets"/>
             <system-properties>
-                <property name="jboss.default.multicast.address" value="230.10.1.1"/>
-                <property name="jboss.messaging.group.address" value="230.20.1.1"/>
-                <property name="jboss.modcluster.multicast.address" value="230.30.1.1"/>
+                <property name="jboss.default.multicast.address" value="230.2.0.1"/>
+                <property name="jboss.messaging.group.address" value="231.2.0.1"/>
+                <property name="jboss.modcluster.multicast.address" value="232.2.0.1"/>
                 <property name="jboss.default.jgroups.stack" value="udp"/>
             </system-properties>
         </server-group> 
@@ -136,9 +136,9 @@ jboss-eap-6-windows : JBoss Enterprise Platform 6 on Windows Platform
             </jvm>
             <socket-binding-group ref="ha-sockets"/>
             <system-properties>
-                <property name="jboss.default.multicast.address" value="230.10.1.1"/>
-                <property name="jboss.messaging.group.address" value="230.20.1.1"/>
-                <property name="jboss.modcluster.multicast.address" value="230.30.1.1"/>
+                <property name="jboss.default.multicast.address" value="230.2.0.2"/>
+                <property name="jboss.messaging.group.address" value="231.2.0.2"/>
+                <property name="jboss.modcluster.multicast.address" value="232.2.0.2"/>
                 <property name="jboss.default.jgroups.stack" value="udp"/>
             </system-properties>
         </server-group> 
