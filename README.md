@@ -4,6 +4,27 @@ jboss-ews-tomcat : JBoss Enterprise Web Server 2(Tomcat6,Tomcat7) and Tomcat6,To
 jboss-eap-6-windows : JBoss Enterprise Platform 6 on Windows Platform 
 
 
+## TUNE
+``` 
+/profile=ha/subsystem=modcluster:remove()
+/socket-binding-group=standard-sockets/socket-binding=modcluster:remove()
+/socket-binding-group=ha-sockets/socket-binding=modcluster:remove()
+/extension=org.jboss.as.modcluster:remove()
+
+
+ 
+/profile=ha/subsystem=infinispan/cache-container=web/distributed-cache=dist/component=locking:remove
+/profile=ha/subsystem=infinispan/cache-container=web/distributed-cache=dist/component=transaction:remove 
+/profile=ha/subsystem=undertow:write-attribute(name=instance-id,value="\$\{jboss.node.name\}")
+/profile=ha/subsystem=transactions:write-attribute(name=node-identifier,value="\$\{jboss.node.name\}")
+/profile=ha/subsystem=io/worker=default/:write-attribute(name=task-max-threads,value=500)
+/profile=ha/subsystem=io/worker=default/:write-attribute(name=task-keepalive,value=60)
+/profile=ha/subsystem=datasources/data-source=ExampleDS:remove()
+/profile=ha/subsystem=ee/service=default-bindings:undefine-attribute(name=datasource) 
+/profile=ha/subsystem=logging:write-attribute(name=use-deployment-logging-config,value=false) 
+/profile=ha/subsystem=logging/root-logger=ROOT:remove-handler(name=CONSOLE)
+```
+
 ```
 ## PMES SERVER-GROUP
 /server-group=PMES:add(profile=ha,socket-binding-group=ha-sockets)
