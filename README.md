@@ -3,6 +3,20 @@
 jboss-ews-tomcat : JBoss Enterprise Web Server 2(Tomcat6,Tomcat7) and Tomcat6,Tomcat7 on Linux(Unix) Platform 
 jboss-eap-6-windows : JBoss Enterprise Platform 6 on Windows Platform 
 
+## DOMAIN MODE with Docker
+```
+docker network create jboss
+
+docker run --rm --name master --network jboss --entrypoint '' -p 9990:9990 -it nationminu/wildfly:18.0.1 bash
+
+docker run --rm --name slave1 --network jboss --entrypoint '' -p 8080:8080 -it nationminu/wildfly:18.0.1 bash
+
+# master
+./domain.sh -Djboss.bind.address=master -Djboss.bind.address.management=master -Djboss.host.default.config=host-master.xml
+
+# slave
+./domain.sh -Djboss.domain.master.address=master -Djboss.bind.address=slave1 -Djboss.bind.address.management=slave1 -Djboss.host.default.config=host-slave.xml
+```
 
 ## TUNE
 ``` 
